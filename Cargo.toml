@@ -2,6 +2,21 @@
 name = "pg_str"
 version = "0.2.0"
 edition = "2018"
+authors = ["Matt Jensen<mattjensen@fastmail.com", "Abumni Association <contact@abumni.com>"]
+include = [
+  "**/*.rs",
+  "Cargo.toml",
+  "README.md"
+]
+readme = "README.md"
+repository = "https://github.com/abumni/pg_str"
+documentation = "https://docs.rs/pg_str"
+homepage = "https://github.com/abumni/pg_str"
+license="MIT"
+description = """
+Adds str functions to Postgresql via an extension."""
+keywords = ["postgresql", "string", "cases", "pluralize", "markdown"]
+categories = ["text-processing", "database"]
 
 [lib]
 crate-type = ["cdylib"]
