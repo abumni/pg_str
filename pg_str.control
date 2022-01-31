@@ -1,0 +1,6 @@
+comment = 'pg_str: a string library, extended by abumni'
+default_version = '1.0'
+module_pathname = '$libdir/pg_str'
+relocatable = false
+superuser = false
+schema = str
