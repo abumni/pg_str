@@ -7,12 +7,25 @@ use inflector::cases::{
 use inflector::string::{pluralize, singularize};
 use pulldown_cmark::{html, Options, Parser};
 use str_slug::StrSlug;
+use any_ascii::any_ascii;
 
 pg_module_magic!();
 
 #[pg_extern]
-fn return_static() -> &'static str {
-    "This is a static string xxx"
+fn ascii(input: &str) -> String {
+    any_ascii(input)
+}
+#[pg_extern]
+fn is_ascii(input: &str) -> bool {
+    input.is_ascii()
+}
+#[pg_extern]
+fn contains(input: &str, search: &str) -> bool {
+    input.contains(search)
+}
+#[pg_extern]
+fn contains_all(input: &str, search: Vec<&str>) -> bool {
+    search.iter().all(|s| input.contains(s))
 }
 
 #[pg_extern]
@@ -42,6 +55,10 @@ fn plural(input: &str) -> String {
 #[pg_extern]
 fn title(input: &str) -> String {
     titlecase::to_title_case(input)
+}
+#[pg_extern]
+fn camel(input: &str) -> String {
+    camelcase::to_camel_case(input)
 }
 #[pg_extern]
 fn kebab(input: &str) -> String {
@@ -77,6 +94,10 @@ fn markdown(input: &str) -> String {
 #[pg_extern]
 fn substr(input: &str, start: i32, end: i32) -> &str {
     &input[start as usize..end as usize]
+}
+#[pg_extern]
+fn replace(input: &'static str, old: &'static str, new: &'static str) -> String {
+    input.replace(old, new)
 }
 
 #[pg_extern]
