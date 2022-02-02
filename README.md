@@ -25,7 +25,7 @@ psql
 ## API
 - [] after
 - [] afterLast
-- [] ascii
+- [x] ascii
 - [] before
 - [] beforeLast
 - [] between
@@ -50,7 +50,7 @@ psql
 - [] padRight
 - [x] plural 
 - [] pluralStudly
-- [] random
+- [x] random
 - [] remove
 - [x] replace
 - [] replaceArray
@@ -67,7 +67,6 @@ psql
 - [] substrCount
 - [] substrReplace
 - [x] title 
-- [] toHtmlString
 - [] ucfirst
 - [x] upper 
 - [] uuid

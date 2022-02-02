@@ -1,16 +1,26 @@
 use pgx::*;
 
 extern crate inflector;
+use any_ascii::any_ascii;
 use inflector::cases::{
     camelcase, kebabcase, pascalcase, screamingsnakecase, snakecase, titlecase,
 };
 use inflector::string::{pluralize, singularize};
 use pulldown_cmark::{html, Options, Parser};
+use rand::distributions::Alphanumeric;
+use rand::{thread_rng, Rng};
 use str_slug::StrSlug;
-use any_ascii::any_ascii;
 
 pg_module_magic!();
 
+#[pg_extern]
+fn random(length: usize) -> String {
+    thread_rng()
+        .sample_iter(&Alphanumeric)
+        .take(length)
+        .map(char::from)
+        .collect()
+}
 #[pg_extern]
 fn ascii(input: &str) -> String {
     any_ascii(input)
